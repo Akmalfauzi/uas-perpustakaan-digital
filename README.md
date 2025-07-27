@@ -2,22 +2,27 @@
 
 Sistem Perpustakaan Digital berbasis web menggunakan CodeIgniter 4 untuk manajemen koleksi buku digital dengan fitur peminjaman dan download.
 
-## 📋 Daftar Isi
+## Daftar Isi 📋
 
-- [Fitur Utama](#fitur-utama)
-- [Teknologi yang Digunakan](#teknologi-yang-digunakan)
-- [Persyaratan Sistem](#persyaratan-sistem)
-- [Instalasi](#instalasi)
-- [Konfigurasi Database](#konfigurasi-database)
-- [Konfigurasi Aplikasi](#konfigurasi-aplikasi)
-- [Migrasi dan Seeder](#migrasi-dan-seeder)
-- [Struktur Database](#struktur-database)
-- [Akun Default](#akun-default)
-- [Screenshot Tampilan](#screenshot-tampilan)
-- [Panduan Penggunaan](#panduan-penggunaan)
-- [Troubleshooting](#troubleshooting)
+- [Fitur Utama](#fitur-utama-)
+- [Teknologi yang Digunakan](#teknologi-yang-digunakan-)
+- [Persyaratan Sistem](#persyaratan-sistem-)
+- [Instalasi](#instalasi-)
+- [Konfigurasi Database](#konfigurasi-database-)
+- [Konfigurasi Aplikasi](#konfigurasi-aplikasi-)
+- [Migrasi dan Seeder](#migrasi-dan-seeder-)
+- [Struktur Database](#struktur-database-)
+- [Akun Default](#akun-default-)
+- [Screenshot Tampilan](#screenshot-tampilan-)
+- [Panduan Penggunaan](#panduan-penggunaan-)
+- [Troubleshooting](#troubleshooting-)
+- [Struktur Folder Penting](#struktur-folder-penting-)
+- [Catatan Pengembangan](#catatan-pengembangan-)
+- [Kontribusi](#kontribusi-)
+- [Lisensi](#lisensi-)
+- [Informasi Pengembang](#informasi-pengembang-)
 
-## ✨ Fitur Utama
+## Fitur Utama ✨
 
 - **Manajemen Buku Digital**
   - Upload buku dalam format PDF
@@ -48,7 +53,7 @@ Sistem Perpustakaan Digital berbasis web menggunakan CodeIgniter 4 untuk manajem
   - Manajemen peminjaman
   - Pengaturan sistem
 
-## 🛠 Teknologi yang Digunakan
+## Teknologi yang Digunakan 🛠
 
 - **Backend**: CodeIgniter 4
 - **Database**: MySQL
@@ -58,7 +63,7 @@ Sistem Perpustakaan Digital berbasis web menggunakan CodeIgniter 4 untuk manajem
 - **Fonts**: Google Fonts (Inter)
 - **JavaScript Library**: Alpine.js
 
-## 📋 Persyaratan Sistem
+## Persyaratan Sistem 📋
 
 - PHP 7.4 atau lebih tinggi
 - MySQL 5.7 atau lebih tinggi
@@ -71,12 +76,12 @@ Sistem Perpustakaan Digital berbasis web menggunakan CodeIgniter 4 untuk manajem
   - php-mysqlnd
   - php-gd (untuk upload gambar)
 
-## 🚀 Instalasi
+## Instalasi 🚀
 
 ### 1. Clone Repository
 
 ```bash
-git clone [repository-url]
+git clone https://github.com/Akmalfauzi/uas-perpustakaan-digital.git
 cd uas-perpustakaan-digital
 ```
 
@@ -104,7 +109,7 @@ chmod -R 755 writable/
 chmod -R 755 public/uploads/
 ```
 
-## 🗄 Konfigurasi Database
+## Konfigurasi Database 🗄
 
 ### 1. Buat Database MySQL
 
@@ -128,7 +133,7 @@ database.default.DBPrefix =
 database.default.port = 3306
 ```
 
-## ⚙ Konfigurasi Aplikasi
+## Konfigurasi Aplikasi ⚙
 
 ### File .env - Konfigurasi Utama
 
@@ -176,7 +181,7 @@ session.timeToUpdate = 300
 session.regenerateDestroy = false
 ```
 
-## 🔄 Migrasi dan Seeder
+## Migrasi dan Seeder 🔄
 
 ### 1. Jalankan Migrasi Database
 
@@ -202,7 +207,7 @@ php spark db:seed UserSeeder
 php spark db:seed BookSeeder
 ```
 
-## 📊 Struktur Database
+## Struktur Database 📊
 
 ### Tabel `users`
 ```sql
@@ -287,7 +292,7 @@ CREATE TABLE `settings` (
 );
 ```
 
-## 👤 Akun Default
+## Akun Default 👤
 
 Setelah menjalankan seeder, akun berikut akan tersedia:
 
@@ -303,7 +308,7 @@ Setelah menjalankan seeder, akun berikut akan tersedia:
 - **Role**: User
 - **Akses**: Browse, download, dan peminjaman buku
 
-## 📸 Screenshot Tampilan
+## Screenshot Tampilan 📸
 
 ### 1. Halaman Beranda
 ![Halaman Beranda](public/screenshots/home.png)
@@ -375,7 +380,7 @@ Setelah menjalankan seeder, akun berikut akan tersedia:
 - Riwayat peminjaman
 - Status peminjaman dengan warna-warna yang jelas
 
-## 📖 Panduan Penggunaan
+## Panduan Penggunaan 📖
 
 ### Untuk Admin
 
@@ -414,7 +419,7 @@ Setelah menjalankan seeder, akun berikut akan tersedia:
    - Pilih tanggal peminjaman
    - Tunggu persetujuan admin
 
-## 🔧 Troubleshooting
+## Troubleshooting 🔧
 
 ### Problem: Error 500 saat akses
 **Solusi:**
@@ -454,7 +459,7 @@ rm -rf writable/session/*
 chmod -R 755 writable/
 ```
 
-## 📂 Struktur Folder Penting
+## Struktur Folder Penting 📂
 
 ```
 uas-perpustakaan-digital/
@@ -474,14 +479,14 @@ uas-perpustakaan-digital/
 └── .env                    # Konfigurasi aplikasi
 ```
 
-## 📝 Catatan Pengembangan
+## Catatan Pengembangan 📝
 
 - Gunakan environment `development` untuk debugging
 - Backup database secara berkala
 - Monitor log error di `writable/logs/`
 - Update dependencies secara rutin dengan `composer update`
 
-## 🤝 Kontribusi
+## Kontribusi 🤝
 
 Jika ingin berkontribusi:
 1. Fork repository
@@ -489,11 +494,11 @@ Jika ingin berkontribusi:
 3. Commit perubahan
 4. Submit pull request
 
-## 📄 Lisensi
+## Lisensi 📄
 
 Project ini menggunakan lisensi MIT. Lihat file LICENSE untuk detail lengkap.
 
-## 👨‍💻 Informasi Pengembang
+## Informasi Pengembang 👨‍💻
 
 **Nama**: Akmal Fauzi  
 **NIM**: 230401010160  
