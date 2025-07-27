@@ -306,7 +306,7 @@ Setelah menjalankan seeder, akun berikut akan tersedia:
 ## 📸 Screenshot Tampilan
 
 ### 1. Halaman Beranda
-*[Screenshot halaman utama dengan hero section dan statistik]*
+![Halaman Beranda](public/screenshots/home.png)
 
 **Fitur yang ditampilkan:**
 - Hero section dengan icon book reader
@@ -315,7 +315,7 @@ Setelah menjalankan seeder, akun berikut akan tersedia:
 - Daftar buku terbaru
 
 ### 2. Halaman Login
-*[Screenshot form login]*
+![Halaman Login](public/screenshots/login.png)
 
 **Fitur yang ditampilkan:**
 - Form login dengan email dan password
@@ -324,7 +324,7 @@ Setelah menjalankan seeder, akun berikut akan tersedia:
 - Responsive design
 
 ### 3. Halaman Register
-*[Screenshot form registrasi]*
+![Halaman Register](public/screenshots/register.png)
 
 **Fitur yang ditampilkan:**
 - Form registrasi lengkap
@@ -332,7 +332,7 @@ Setelah menjalankan seeder, akun berikut akan tersedia:
 - Real-time validation feedback
 
 ### 4. Dashboard Admin
-*[Screenshot dashboard admin]*
+![Dashboard Admin](public/screenshots/dashboard.png)
 
 **Fitur yang ditampilkan:**
 - Statistik lengkap perpustakaan
@@ -341,7 +341,7 @@ Setelah menjalankan seeder, akun berikut akan tersedia:
 - Quick actions untuk manajemen
 
 ### 5. Manajemen Buku (Admin)
-*[Screenshot halaman manajemen buku]*
+![Manajemen Buku](public/screenshots/manage_buku.png)
 
 **Fitur yang ditampilkan:**
 - Tabel daftar buku dengan pagination
@@ -350,7 +350,7 @@ Setelah menjalankan seeder, akun berikut akan tersedia:
 - Statistik download per buku
 
 ### 6. Form Tambah/Edit Buku
-*[Screenshot form buku]*
+![Form Buku](public/screenshots/form_buku.png)
 
 **Fitur yang ditampilkan:**
 - Upload file PDF
@@ -359,7 +359,7 @@ Setelah menjalankan seeder, akun berikut akan tersedia:
 - Preview cover image
 
 ### 7. Halaman Detail Buku
-*[Screenshot detail buku]*
+![Detail Buku](public/screenshots/detail_buku.png)
 
 **Fitur yang ditampilkan:**
 - Informasi lengkap buku
@@ -367,8 +367,8 @@ Setelah menjalankan seeder, akun berikut akan tersedia:
 - Tombol peminjaman
 - Statistik buku (views, downloads)
 
-### 8. Halaman Peminjaman User
-*[Screenshot dashboard user]*
+### 8. Dashboard User
+![Dashboard User](public/screenshots/dashboard_user.png)
 
 **Fitur yang ditampilkan:**
 - Daftar peminjaman aktif
