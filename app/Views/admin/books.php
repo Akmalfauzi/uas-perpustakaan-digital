@@ -197,8 +197,8 @@
 
 <!-- Pagination -->
 <?php if (isset($pager)): ?>
-<div class="mt-6 flex justify-center">
-    <?= $pager->links() ?>
+<div class="mt-6">
+    <?= $pager->links('default', 'custom_full') ?>
 </div>
 <?php endif; ?>
 
@@ -243,7 +243,6 @@
                 <button type="button" class="px-4 py-2 text-gray-700 border border-gray-300 rounded-lg hover:bg-gray-50" onclick="closeDeleteModal()">Batal</button>
                 <form id="deleteForm" method="POST" class="inline">
                     <?= csrf_field() ?>
-                    <input type="hidden" name="_method" value="DELETE">
                     <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-lg font-semibold hover:bg-red-700">
                         <i class="fas fa-trash mr-2"></i>
                         Hapus Buku
@@ -258,6 +257,11 @@
 <?= $this->section('scripts') ?>
 <script>
 function confirmDelete(bookId, bookTitle) {
+    if (!bookId || !bookTitle) {
+        alert('Error: Data buku tidak valid');
+        return;
+    }
+    
     document.getElementById('bookTitle').textContent = bookTitle;
     document.getElementById('deleteForm').action = '/admin/books/' + bookId + '/delete';
     
@@ -271,6 +275,18 @@ function closeDeleteModal() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Delete form submission handling for better error feedback
+    const deleteForm = document.getElementById('deleteForm');
+    if (deleteForm) {
+        deleteForm.addEventListener('submit', function(e) {
+            const submitBtn = this.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Menghapus...';
+            }
+        });
+    }
+
     // Auto-submit form on filter change
     const categorySelect = document.getElementById('category');
     const statusSelect = document.getElementById('status');

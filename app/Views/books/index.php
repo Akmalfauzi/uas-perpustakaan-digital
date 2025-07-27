@@ -151,9 +151,7 @@
     <!-- Pagination -->
     <?php if (isset($pager)): ?>
     <div class="mt-12">
-        <nav aria-label="Book pagination" class="flex justify-center">
-            <?= $pager->links() ?>
-        </nav>
+        <?= $pager->links('default', 'custom_full') ?>
     </div>
     <?php endif; ?>
 

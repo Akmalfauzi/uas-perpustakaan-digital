@@ -181,8 +181,8 @@
 
 <!-- Pagination -->
 <?php if (isset($pager)): ?>
-<div class="mt-6 flex justify-center">
-    <?= $pager->links() ?>
+<div class="mt-6">
+    <?= $pager->links('default', 'custom_full') ?>
 </div>
 <?php endif; ?>
 

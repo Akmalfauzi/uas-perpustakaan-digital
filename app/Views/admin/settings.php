@@ -74,12 +74,18 @@
                     <label for="books_per_page" class="block text-sm font-medium text-gray-700 mb-2">
                         Buku per Halaman
                     </label>
-                    <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" id="books_per_page" name="books_per_page">
-                        <option value="12" <?= ($settings['books_per_page'] ?? 12) == 12 ? 'selected' : '' ?>>12</option>
-                        <option value="24" <?= ($settings['books_per_page'] ?? 12) == 24 ? 'selected' : '' ?>>24</option>
-                        <option value="36" <?= ($settings['books_per_page'] ?? 12) == 36 ? 'selected' : '' ?>>36</option>
-                        <option value="48" <?= ($settings['books_per_page'] ?? 12) == 48 ? 'selected' : '' ?>>48</option>
-                    </select>
+                    <input 
+                        type="number" 
+                        class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" 
+                        id="books_per_page" 
+                        name="books_per_page" 
+                        value="<?= esc($settings['books_per_page'] ?? 12) ?>"
+                        min="6"
+                        max="100"
+                        step="6"
+                        placeholder="12"
+                    >
+                    <p class="text-xs text-gray-500 mt-1">Jumlah buku yang ditampilkan per halaman (minimal 6, maksimal 100)</p>
                 </div>
                 <div>
                     <label for="max_file_size" class="block text-sm font-medium text-gray-700 mb-2">

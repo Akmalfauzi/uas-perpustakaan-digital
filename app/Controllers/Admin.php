@@ -246,22 +246,80 @@ class Admin extends BaseController
 
         $book = $this->bookModel->find($id);
         if (!$book) {
-            throw new \CodeIgniter\Exceptions\PageNotFoundException('Buku tidak ditemukan');
+            return redirect()->to('/admin/books')->with('error', 'Buku tidak ditemukan');
         }
 
-        // Delete associated files
-        if ($book['cover_image'] && file_exists(ROOTPATH . 'public/' . $book['cover_image'])) {
-            unlink(ROOTPATH . 'public/' . $book['cover_image']);
-        }
-        
-        if ($book['file_path'] && file_exists(ROOTPATH . 'public/' . $book['file_path'])) {
-            unlink(ROOTPATH . 'public/' . $book['file_path']);
-        }
+        // Start database transaction
+        $db = \Config\Database::connect();
+        $db->transStart();
 
-        if ($this->bookModel->delete($id)) {
-            return redirect()->to('/admin/books')->with('success', 'Buku berhasil dihapus');
-        } else {
-            return redirect()->to('/admin/books')->with('error', 'Gagal menghapus buku');
+        try {
+            // Check if book has active loans
+            $activeLoanCount = $this->loanModel->where('book_id', $id)
+                                               ->where('status', 'approved')
+                                               ->countAllResults();
+            
+            if ($activeLoanCount > 0) {
+                return redirect()->to('/admin/books')->with('error', 'Tidak dapat menghapus buku yang sedang dipinjam');
+            }
+
+            // Delete related records first (if not using CASCADE)
+            // The foreign keys are set to CASCADE, so this should happen automatically
+            // But we'll do it explicitly for safety
+            $this->loanModel->where('book_id', $id)->delete();
+            
+            // Delete download logs
+            $db->table('download_logs')->where('book_id', $id)->delete();
+
+            // Delete the book record from database
+            if (!$this->bookModel->delete($id)) {
+                throw new \Exception('Gagal menghapus data buku dari database');
+            }
+
+            // If database deletion successful, then delete associated files
+            $fileErrors = [];
+            
+            // Delete cover image
+            if ($book['cover_image']) {
+                $coverPath = ROOTPATH . 'public/' . $book['cover_image'];
+                if (file_exists($coverPath)) {
+                    if (!unlink($coverPath)) {
+                        $fileErrors[] = 'cover image';
+                    }
+                }
+            }
+            
+            // Delete book file
+            if ($book['file_path']) {
+                $filePath = ROOTPATH . 'public/' . $book['file_path'];
+                if (file_exists($filePath)) {
+                    if (!unlink($filePath)) {
+                        $fileErrors[] = 'book file';
+                    }
+                }
+            }
+
+            // Complete the transaction
+            $db->transComplete();
+
+            if ($db->transStatus() === false) {
+                throw new \Exception('Gagal menghapus buku karena error database');
+            }
+
+            // Success message with file deletion warnings if any
+            $message = 'Buku berhasil dihapus';
+            if (!empty($fileErrors)) {
+                $message .= ', namun gagal menghapus beberapa file: ' . implode(', ', $fileErrors);
+            }
+
+            return redirect()->to('/admin/books')->with('success', $message);
+
+        } catch (\Exception $e) {
+            // Rollback transaction on error
+            $db->transRollback();
+            
+            log_message('error', 'Error deleting book ID ' . $id . ': ' . $e->getMessage());
+            return redirect()->to('/admin/books')->with('error', 'Gagal menghapus buku: ' . $e->getMessage());
         }
     }
 
