@@ -79,13 +79,10 @@
                         class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500" 
                         id="books_per_page" 
                         name="books_per_page" 
-                        value="<?= esc($settings['books_per_page'] ?? 12) ?>"
-                        min="6"
-                        max="100"
-                        step="6"
-                        placeholder="12"
+                        value="<?= esc($settings['books_per_page'] ?? 8) ?>"
+                        placeholder="8"
                     >
-                    <p class="text-xs text-gray-500 mt-1">Jumlah buku yang ditampilkan per halaman (minimal 6, maksimal 100)</p>
+                    <p class="text-xs text-gray-500 mt-1">Jumlah buku yang ditampilkan per halaman</p>
                 </div>
                 <div>
                     <label for="max_file_size" class="block text-sm font-medium text-gray-700 mb-2">
